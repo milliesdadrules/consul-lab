@@ -19,6 +19,7 @@ Vagrant.configure("2") do |config|
     config.vm.define "web#{i}" do |ws|
       ws.vm.hostname = "web#{i}"
       ws.vm.network "private_network", ip: "10.20.20.2#{i}"
+      ws.vm.provision "shell", path: "install/web.docker.sh", privileged: false
     end
   end
 
