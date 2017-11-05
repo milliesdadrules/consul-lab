@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "lb" do |lb|
     lb.vm.hostname = "lb"
     lb.vm.network "private_network", ip: "10.20.20.20"
+    lb.vm.provision "shell", path: "install/lb.docker.sh", privileged: false
   end
 
   (1..2).each do |i|
@@ -22,5 +23,4 @@ Vagrant.configure("2") do |config|
       ws.vm.provision "shell", path: "install/web.docker.sh", privileged: false
     end
   end
-
 end
